@@ -25,10 +25,10 @@
     "mounts": [
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
         "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
-        "source=${localEnv:HOME}/sailing-through-pcds-devcontainer/.zsh_history,target=/home/dev/.zsh_history,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/sailing-through-pcds-devcontainer/.zsh_history,target=/home/dev/.zsh_history,type=bind,consistency=cached"
     ],
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/sailing-through-pcds-devcontainer/src/sailing-through-pcds-devcontainer,type=bind",
-    "workspaceFolder": "/workspace/sailing-through-pcds-devcontainer/src",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/sailing-through-pcds-devcontainer,type=bind",
+    "workspaceFolder": "/workspace/sailing-through-pcds-devcontainer",
     "customizations": {
         "vscode": {
             "settings": {
