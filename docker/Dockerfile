@@ -6,6 +6,9 @@ SHELL ["/bin/bash", "-c"]
 RUN --mount=type=cache,target=/var/cache/apt \
     --mount=type=bind,source=docker/scripts/install-tools.sh,target=/tmp/install-tools.sh \
     bash /tmp/install-tools.sh
+RUN --mount=type=cache,target=/var/cache/pip \
+    --mount=type=bind,source=docker/scripts/install-python-pkgs.sh,target=/tmp/install-python-pkgs.sh \
+    bash /tmp/install-python-pkgs.sh
 
 # Clean cache
 RUN apt-get autoremove -y \
@@ -14,19 +17,16 @@ RUN apt-get autoremove -y \
 
 # Create a workspace directory
 RUN mkdir -p /workspace/sailing-through-pcds-devcontainer/src/sailing-through-pcds-devcontainer \
-    && cd /workspace/sailing-through-pcds-devcontainer \
-    && chown -R $USERNAME:$USERNAME /workspace/sailing-through-pcds-devcontainer/
+    && cd /workspace/sailing-through-pcds-devcontainer
 
 # Default powerline10k theme, no plugins installed
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.0/zsh-in-docker.sh)"
 
 RUN --mount=type=bind,source=docker/config/docker.zshrc,target=/tmp/docker.zshrc \
-    cat /tmp/docker.zshrc >> /home/$USERNAME/.zshrc
+    cat /tmp/docker.zshrc >> $HOME/.zshrc
 
 # NVIDIA-related environment variables
 ENV NVIDIA_VISIBLE_DEVICES \
     ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES \
     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
-
-USER $USERNAME
