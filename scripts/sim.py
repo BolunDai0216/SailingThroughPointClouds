@@ -3,26 +3,32 @@ import pickle
 import signal
 import sys
 import time
-from copy import deepcopy
 
 import numpy as np
 from Go2Py.sim.mujoco import Go2Sim
-from pcd_cbf.compass import Compass
 from PIL import Image
-from quadruped_controller import QuadrupedController
-from utils.exp_utils import clip_velocity, get_performance_controller, world2body
+
+from sailing_through_pcds.mariner import Mariner
+from sailing_through_pcds.quadruped_controller import QuadrupedController
+from sailing_through_pcds.utils import (
+    clip_velocity,
+    get_performance_controller,
+    world2body,
+)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", type=str, default="00")
     parser.add_argument(
-        "--mapdir", type=str, default="/workspace/sailing-through-pcds-devcontainer/data"
+        "--mapdir",
+        type=str,
+        default="/workspace/sailing-through-pcds-devcontainer/data/",
     )
     args = parser.parse_args()
 
     map_name = f"map0{args.id}"
-    robot = Go2Sim(mode="highlevel", xml_path="../assets/mujoco/Go2/go2.xml")
+    robot = Go2Sim(mode="highlevel", xml_path="../assets/go2.xml")
     image = Image.open(f"{args.mapdir}{map_name}.png").convert("L")
     image_np = np.array(image).reshape(-1) / 255
     robot.model.hfield_data = 2.0 * image_np
@@ -31,13 +37,13 @@ def main():
     robot.reset()
 
     p_target_world = np.array([6.0, 6.0, 0.0])
-
-    controller = QuadrupedController(a=0.5, b=0.3, c=0.2)  # with vessel
-    preview_controller = Compass(a=0.8, b=0.1, c=0.2, order=4)
+    controller = QuadrupedController(a=0.5, b=0.3, c=0.2)
+    preview_controller = Mariner(a=0.8, b=0.1, c=0.2, order=4)
 
     # Define the signal handler function
     def signal_handler(sig, frame):
         robot.close()
+        image.close()
         sys.exit(0)
 
     # Register the signal handler
@@ -50,14 +56,12 @@ def main():
 
     preview_arm_counter = 0
     done = False
-    robot_positions = []
     success = False
 
     for i in range(15000):
         if done:
             break
         p_robot_world, _quat_robot_world = robot.getPose()
-        robot_positions.append(deepcopy(p_robot_world))
         quat_robot_world = np.array(
             [
                 _quat_robot_world[1],
@@ -67,10 +71,7 @@ def main():
             ]
         )
 
-        p_target_body = world2body(
-            p_target_world, p_robot_world, quat_robot_world, SLAM=True
-        )
-        robot_positions.append(deepcopy(p_robot_world))
+        p_target_body = world2body(p_target_world, p_robot_world, quat_robot_world)
 
         if i % 100 == 0:
             lidar_points = robot.getLaserScan(max_range=10.0)["pcd"]
@@ -90,15 +91,12 @@ def main():
                 break
 
             v_des, done = get_performance_controller(
-                np.zeros(2), preview_target_body[:2], 0.0, kv=0.5, kw=1.0, v_max=0.4
+                np.zeros(2), preview_target_body[:2], 0.0, kv=1.0, kw=1.5, v_max=1.0
             )
-            v_cmd = clip_velocity(v_des[:2], 0.4)
-            w_cmd = np.clip(v_des[2], -1.0, 1.0)
+            v_cmd = clip_velocity(v_des[:2], 1.0)
+            w_cmd = np.clip(v_des[2], -2.0, 2.0)
             vel = np.array([v_cmd[0], v_cmd[1], w_cmd])
             safe_vel = controller.get_control(vel, cbf, dcbf)
-            local_planner_overall_comp_times.append(
-                (time.time() - cbf_tic) / lidar_points.shape[0]
-            )
 
         if i <= 20:
             robot.step(0.0, 0.0, 0.0)
@@ -117,8 +115,6 @@ def main():
         if error < 0.5:
             success = True
             break
-
-    robot.viewer.close()
 
 
 if __name__ == "__main__":

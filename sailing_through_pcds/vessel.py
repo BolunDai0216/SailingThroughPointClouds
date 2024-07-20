@@ -18,16 +18,20 @@ def computeAlphasBody(
     p = points[tid]
     x, y, z = p[0], p[1], p[2]
 
-    xa_d = wp.pow(x / a, 2.0 * d)
-    yb_d = wp.pow(y / b, 2.0 * d)
-    zc_d = wp.pow(z / c, 2.0 * d)
+    xa_dm1 = wp.pow(x / a, 2.0 * d - 1.0)
+    yb_dm1 = wp.pow(y / b, 2.0 * d - 1.0)
+    zc_dm1 = wp.pow(z / c, 2.0 * d - 1.0)
+
+    xa_d = xa_dm1 * x / a
+    yb_d = yb_dm1 * y / b
+    zc_d = zc_dm1 * z / c
 
     _alpha = xa_d + yb_d + zc_d
     alphas[tid] = _alpha
 
-    d_alpha_d_x = -2.0 * d * xa_d / x
-    d_alpha_d_y = -2.0 * d * yb_d / y
-    d_alpha_d_z = -2.0 * d * zc_d / z
+    d_alpha_d_x = -2.0 * d * xa_dm1 / a
+    d_alpha_d_y = -2.0 * d * yb_dm1 / b
+    d_alpha_d_z = -2.0 * d * zc_dm1 / c
     d_alpha_d_r[tid] = wp.vec3(d_alpha_d_x, d_alpha_d_y, d_alpha_d_z)
 
     d_alpha_d_qw = 8.0 * d * _alpha
