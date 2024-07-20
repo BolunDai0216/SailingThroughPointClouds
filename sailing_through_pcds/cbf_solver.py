@@ -14,7 +14,6 @@ class CBFQPSolver:
         self.H, self.g, self.C, self.lb = self.compute_params(params)
 
         if not self.initialized:
-            # self.qp.init(H=self.H, g=self.g)
             self.qp.init(H=self.H, g=self.g, C=self.C, l=self.lb)
 
             self.qp.settings.eps_abs = 1.0e-6
@@ -25,8 +24,6 @@ class CBFQPSolver:
                 self.qp.settings.initial_guess = (
                     proxsuite.proxqp.InitialGuess.WARM_START_WITH_PREVIOUS_RESULT
                 )
-
-            # self.qp.update(H=self.H, g=self.g)
             self.qp.update(H=self.H, g=self.g, C=self.C, l=self.lb)
 
         self.qp.solve()

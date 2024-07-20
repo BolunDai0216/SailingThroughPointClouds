@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pinocchio as pin
 from matplotlib.patches import Ellipse
-from scipy.spatial.transform import Rotation
 
 
 def clip_velocity(v, v_max):
@@ -44,11 +43,6 @@ def get_performance_controller(
 
 
 def get_yaw_error(yaw, yaw_des):
-    # R1 = Rotation.from_euler("z", yaw).as_matrix()
-    # R2 = Rotation.from_euler("z", yaw_des).as_matrix()
-    # R_error = Rotation.from_matrix(R1.T @ R2)
-    # yaw_error = R_error.as_euler("zyx")[0]
-    # breakpoint()
     R1 = pin.rpy.rpyToMatrix(0, 0, yaw)
     R2 = pin.rpy.rpyToMatrix(0, 0, yaw_des)
     R_error = R1.T @ R2
