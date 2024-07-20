@@ -1,13 +1,13 @@
 # Sailing Through Point Clouds
 
-This repo contains the official implementation of *Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions*.
+This repo contains the official implementation of [**Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions**](https://arxiv.org/pdf/2403.18206).
 
-# Usage
+## Usage
 
 The only supported way to run the code is via a devcontainer on a linux machine. To build the devcontainer, first run the setup script in inside `provisioning` to create the `.zsh_history` file which will be mounted to the devcontainer
 
 ```bash
-cd provisioning && bash setup.sh
+cd /path/to/provisioning && bash setup.sh
 ```
 
 Then, open a VS Code window at the root of this repo
@@ -26,4 +26,17 @@ This will save the generated height maps inside the newly created `data` folder.
 
 ```bash
 cd /path/to/scripts && python3 sim.py
+```
+
+## Citation
+
+To cite our paper, please use the following bibtex
+
+```bibtex
+@article{DaiKKGTK23,
+  author       = {Bolun Dai and Rooholla Khorrambakht and Prashanth Krishnamurthy and Farshad Khorrami},
+  title        = {Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions},
+  journal      = {{IEEE} Robotics and Automation Letters},
+  year         = {2024},
+}
 ```
