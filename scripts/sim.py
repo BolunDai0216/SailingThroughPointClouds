@@ -17,7 +17,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", type=str, default="00")
     parser.add_argument(
-        "--mapdir", type=str, default="/home/pcd-cbf/assets/height_map_img/"
+        "--mapdir", type=str, default="/workspace/sailing-through-pcds-devcontainer/data"
     )
     args = parser.parse_args()
 
