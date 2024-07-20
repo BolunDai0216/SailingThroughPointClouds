@@ -4,13 +4,13 @@ This repo contains the official implementation of [**Sailing Through Point Cloud
 
 ## Usage
 
-First clone the repo 
+First, clone the repo using the following command
 
 ```bash
 git clone https://github.com/BolunDai0216/SailingThroughPointClouds.git
 ```
 
-The only supported way to run the code is via a devcontainer on a linux machine. To build the devcontainer, first run the setup script in inside `provisioning` to create the `.zsh_history` file which will be mounted to the devcontainer
+The only supported way to run the code is via a dev container on a Linux machine. To build the dev container, first run the setup script in inside `provisioning` to create the `.zsh_history` file, which will be mounted to the dev container
 
 ```bash
 cd /path/to/provisioning && bash setup.sh
@@ -22,13 +22,13 @@ Then, open a VS Code window at the root of this repo
 cd /path/to/SailingThroughPointClouds && code . 
 ```
 
-Then press `Shift + Ctrl + P` and select `Dev Containers: Rebuild and Reopen in Container` which builds the devcontainer. After the container is built, first generate the height map data by running the dataset generation script in `scripts`
+Then press `Shift + Ctrl + P` and select `Dev Containers: Rebuild and Reopen in Container`, which builds the dev container. After the container is built, first generate the height map data by running the dataset generation script in `scripts`
 
 ```bash
 mkdir data && cd /path/to/scripts && python3 dataset_gen.py
 ```
 
-This will save the generated height maps inside the newly created `data` folder. Then, to run the simulation run the command
+This will save the generated height maps inside the newly created `data` folder. Then, to run the simulation, run the command
 
 ```bash
 cd /path/to/scripts && python3 sim.py
@@ -36,7 +36,7 @@ cd /path/to/scripts && python3 sim.py
 
 ## Citation
 
-To cite our paper, please use the following bibtex
+To cite our paper, please use the following BibTeX
 
 ```bibtex
 @article{DaiKKK24,
