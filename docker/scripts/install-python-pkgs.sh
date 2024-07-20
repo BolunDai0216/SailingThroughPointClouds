@@ -11,3 +11,4 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 pip3 install matplotlib opencv-python proxsuite
 pip3 install isort black
 pip3 install warp-lang scikit-learn casadi mujoco pin
+pip3 install hydra-core
