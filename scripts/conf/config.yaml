@@ -1,0 +1,27 @@
+map_dir: "/workspace/sailing-through-pcds-devcontainer/data/"
+map_id: 34
+
+robot_start_pos: [-4.0, -4.0, 0.0]
+robot_goal_pos: [6.0, 6.0, 0.0]
+
+vessel_a: 0.5
+vessel_b: 0.3
+vessel_c: 0.2
+
+mariner_a: 0.8
+mariner_b: 0.1
+mariner_c: 0.2
+mariner_d: 4
+
+lidar_max_range: 10.0
+num_iters: 15000
+safe_vel_update_freq: 100
+mariner_update_freq: 4
+
+performance_controller_kv: 1.0
+performance_controller_kw: 1.5
+performance_controller_v_max: 1.0
+performance_controller_w_max: 2.0
+
+start_delay: 20
+success_distance: 0.5
