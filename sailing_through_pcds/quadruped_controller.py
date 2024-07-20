@@ -1,7 +1,8 @@
 import numpy as np
+from rich.console import Console
+
 from sailing_through_pcds.cbf_solver import CBFQPSolver
 from sailing_through_pcds.vessel import Vessel
-from rich.console import Console
 
 
 class QuadrupedController:
