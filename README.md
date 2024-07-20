@@ -39,7 +39,7 @@ cd /path/to/scripts && python3 sim.py
 To cite our paper, please use the following bibtex
 
 ```bibtex
-@article{DaiKKGTK23,
+@article{DaiKKK24,
   author       = {Bolun Dai and Rooholla Khorrambakht and Prashanth Krishnamurthy and Farshad Khorrami},
   title        = {Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions},
   journal      = {{IEEE} Robotics and Automation Letters},
