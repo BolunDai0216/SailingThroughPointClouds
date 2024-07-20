@@ -4,6 +4,12 @@ This repo contains the official implementation of [**Sailing Through Point Cloud
 
 ## Usage
 
+First clone the repo 
+
+```bash
+git clone https://github.com/BolunDai0216/SailingThroughPointClouds.git
+```
+
 The only supported way to run the code is via a devcontainer on a linux machine. To build the devcontainer, first run the setup script in inside `provisioning` to create the `.zsh_history` file which will be mounted to the devcontainer
 
 ```bash
