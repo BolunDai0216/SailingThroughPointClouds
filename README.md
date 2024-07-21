@@ -10,7 +10,10 @@ First, clone the repo using the following command
 git clone https://github.com/BolunDai0216/SailingThroughPointClouds.git
 ```
 
-The only supported way to run the code is via a dev container on a Linux machine. To build the dev container, first run the setup script in inside `provisioning` to create the `.zsh_history` file, which will be mounted to the dev container
+> [!NOTE]
+> The only supported way to run the code is via a dev container on a Linux machine. 
+
+To build the dev container, first run the setup script in inside `provisioning` to create the `.zsh_history` file, which will be mounted to the dev container
 
 ```bash
 cd /path/to/provisioning && bash setup.sh
