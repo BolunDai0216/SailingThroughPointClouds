@@ -47,5 +47,8 @@ To cite our paper, please use the following BibTeX
   title        = {Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions},
   journal      = {{IEEE} Robotics and Automation Letters},
   year         = {2024},
+  volume       = {9},
+  number       = {9},
+  pages        = {7731-7738},
 }
 ```
