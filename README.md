@@ -2,7 +2,7 @@
 
 This repo contains the official implementation of [**Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions**](https://arxiv.org/pdf/2403.18206).
 
-## Usage
+## ⌨️ $\textsf{\large\color{Dandelion}{Usage}}$
 
 First, clone the repo using the following command
 
@@ -37,7 +37,7 @@ This will save the generated height maps inside the newly created `data` folder.
 cd /path/to/scripts && python3 sim.py
 ```
 
-## Citation
+## 📖 $\textsf{\large\color{Dandelion}{Citation}}$
 
 To cite our paper, please use the following BibTeX
 
