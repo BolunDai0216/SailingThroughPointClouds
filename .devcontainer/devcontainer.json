@@ -6,9 +6,6 @@
     },
     "containerEnv": {
         "DISPLAY": "unix:0",
-        "ROS_LOCALHOST_ONLY": "0",
-        "ROS_AUTOMATIC_DISCOVERY_RANGE": "SUBNET",
-        "ROS_DOMAIN_ID": "0",
         "SHELL": "/bin/zsh"
     },
     "runArgs": [
@@ -35,30 +32,14 @@
                 "extensions.verifySignature": false
             },
             "extensions": [
-                "cheshirekow.cmake-format",
-                "llvm-vs-code-extensions.vscode-clangd",
                 "ms-azuretools.vscode-docker",
-                "ms-iot.vscode-ros",
                 "ms-python.black-formatter",
                 "ms-python.flake8",
                 "ms-python.isort",
                 "ms-python.pylint",
                 "ms-python.python",
-                "ms-toolsai.jupyter",
-                "ms-vscode.cmake-tools",
-                "mutantdino.resourcemonitor",
-                "vadimcn.vscode-lldb",
-                "xaver.clang-format"
+                "ms-toolsai.jupyter"
             ]
-        }
-    },
-    "forwardPorts": [
-        3000
-    ],
-    "portsAttributes": {
-        "3000": {
-            "label": "Application",
-            "onAutoForward": "notify"
         }
     }
 }

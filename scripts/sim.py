@@ -8,6 +8,7 @@ import numpy as np
 from Go2Py.sim.mujoco import Go2Sim
 from omegaconf import DictConfig, OmegaConf
 from PIL import Image
+
 from sailing_through_pcds.mariner import Mariner
 from sailing_through_pcds.quadruped_controller import QuadrupedController
 from sailing_through_pcds.utils import (

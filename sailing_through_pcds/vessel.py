@@ -79,7 +79,9 @@ class Vessel:
             b (float): length of the semi-axis along y
             c (float): length of the semi-axis along z
         """
-        self.P = wp.mat33(1 / a**2, 0.0, 0.0, 0.0, 1 / b**2, 0.0, 0.0, 0.0, 1 / c**2)
+        self.P = wp.mat33(
+            1 / a**2, 0.0, 0.0, 0.0, 1 / b**2, 0.0, 0.0, 0.0, 1 / c**2
+        )
         self.a = a
         self.b = b
         self.c = c
