@@ -4,10 +4,13 @@ This repo contains the official implementation of [**Sailing Through Point Cloud
 
 ## ⌨️ $\textsf{\large\color{Dandelion}{Usage}}$
 
-First, clone the repo using the following command
+First, clone the repo and pull the meshes using the following commands
 
 ```bash
 git clone https://github.com/BolunDai0216/SailingThroughPointClouds.git
+
+# Git LFS
+git lfs pull
 ```
 
 > [!NOTE]
