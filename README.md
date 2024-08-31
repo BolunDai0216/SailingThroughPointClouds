@@ -16,7 +16,7 @@ git lfs pull
 ```
 
 > [!NOTE]
-> The only supported way to run the code is via a dev container on a Linux machine. 
+> The only supported way to run the code is via a dev container on a Linux machine. **However (maybe with some changes), the code will work on other platforms.**
 
 To build the dev container, first run the setup script in inside `provisioning` to create the `.zsh_history` file, which will be mounted to the dev container
 
