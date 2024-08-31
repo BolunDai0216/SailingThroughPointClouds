@@ -1,5 +1,7 @@
 # ⛵ $\textsf{\color{darkorange}{Sailing\ Through\ Point\ Clouds}}$ 🌤️
 
+[![License](https://img.shields.io/badge/License-MIT-cfd8dc?style=flat-square&labelColor=orange&color=lightgray)](https://github.com/BolunDai0216/SailingThroughPointClouds/blob/main/LICENSE)
+
 This repo contains the official implementation of [**Sailing Through Point Clouds: Safe Navigation Using Point Cloud Based Control Barrier Functions**](https://arxiv.org/pdf/2403.18206).
 
 ## ⌨️ $\textsf{\large\color{Dandelion}{Usage}}$
