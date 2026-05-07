@@ -32,14 +32,14 @@ def computeArmAlphasHighOrderEllipsoid(
 class Mariner:
     def __init__(
         self,
-        a=1.0,
-        b=0.2,
-        c=0.2,
-        n_ellipse=100,
-        max_scale=2.0,
-        order=8,
-        angle_lim=7 / 8,
-    ):
+        a: float = 1.0,
+        b: float = 0.2,
+        c: float = 0.2,
+        n_ellipse: int = 100,
+        max_scale: float = 2.0,
+        order: int = 8,
+        angle_lim: float = 7 / 8,
+    ) -> None:
         self.n_ellipse = n_ellipse
         self.setup_ellipsoid(a, b, c)
         self.console = Console()
@@ -67,19 +67,21 @@ class Mariner:
             ]
         )
 
-    def setup_ellipsoid(self, a, b, c):
+    def setup_ellipsoid(self, a: float, b: float, c: float) -> None:
         self.a = a
         self.b = b
         self.c = c
 
-    def jit_run(self, points, target):
+    def jit_run(self, points: np.ndarray, target: np.ndarray) -> None:
         with self.console.status(
             "[bold green]Working PreviewController JIT Run..."
         ) as status:
             self.controller(points, target)
             self.console.log("Finished PreviewController JIT run")
 
-    def controller(self, points, target, return_info=False):
+    def controller(
+        self, points: np.ndarray, target: np.ndarray, return_info: bool = False
+    ):
         target[2] = 0.0
         self.n_points = points.shape[0]
 

@@ -7,16 +7,16 @@ from matplotlib.patches import Circle, Rectangle
 class HeightMapSceneGenerator:
     def __init__(
         self,
-        min_distance_between_objs=0.25,
-        box_width_horizontal=0.4,
-        box_height_horizontal=0.2,
-        circle_radius_horizontal=0.1,
-        box_width_vertical=0.2,
-        box_height_vertical=0.3,
-        circle_radius_vertical=0.1,
-        n_horizontal_trials=50,
-        n_vertical_trials=50,
-    ):
+        min_distance_between_objs: float = 0.25,
+        box_width_horizontal: float = 0.4,
+        box_height_horizontal: float = 0.2,
+        circle_radius_horizontal: float = 0.1,
+        box_width_vertical: float = 0.2,
+        box_height_vertical: float = 0.3,
+        circle_radius_vertical: float = 0.1,
+        n_horizontal_trials: int = 50,
+        n_vertical_trials: int = 50,
+    ) -> None:
         self.collision_manager = hppfcl.DynamicAABBTreeCollisionManager()
         self.callback = hppfcl.DistanceCallBackDefault()
         self.min_distance_between_objs = min_distance_between_objs
@@ -31,7 +31,7 @@ class HeightMapSceneGenerator:
         self.n_horizontal_trials = n_horizontal_trials
         self.n_vertical_trials = n_vertical_trials
 
-    def plt_reset(self):
+    def plt_reset(self) -> None:
         self.collision_manager = hppfcl.DynamicAABBTreeCollisionManager()
         self.fig, self.ax = plt.subplots(1, 1, figsize=(6, 6))
         self.ax.set_aspect("equal")
@@ -41,11 +41,11 @@ class HeightMapSceneGenerator:
         self.ax.set_facecolor("black")
         self.ax.axis("off")
 
-    def plt_save(self, filename, save_dir="./height_map_img", dpi=50):
+    def plt_save(self, filename, save_dir="./height_map_img", dpi=50) -> None:
         plt.savefig(f"{save_dir}/{filename}.png", dpi=dpi)
         plt.close()
 
-    def sample_obstacle(self, n_vertical, n_horizontal):
+    def sample_obstacle(self, n_vertical: int, n_horizontal: int) -> None:
         for _ in range(n_vertical):
             self.sample_obstacles(
                 self.n_vertical_trials,
@@ -72,15 +72,15 @@ class HeightMapSceneGenerator:
 
     def sample_obstacles(
         self,
-        n_trials,
-        x_min,
-        x_max,
-        y_min,
-        y_max,
-        box_width,
-        box_height,
-        circle_radius,
-    ):
+        n_trials: int,
+        x_min: float,
+        x_max: float,
+        y_min: float,
+        y_max: float,
+        box_width: float,
+        box_height: float,
+        circle_radius: float,
+    ) -> bool:
         x = np.random.uniform(x_min, x_max)
         y = np.random.uniform(y_min, y_max)
 
@@ -98,7 +98,15 @@ class HeightMapSceneGenerator:
 
         return success
 
-    def add_obj(self, x, y, box_width, box_height, circle_radius, obj_z_height=0.6):
+    def add_obj(
+        self,
+        x: float,
+        y: float,
+        box_width: float,
+        box_height: float,
+        circle_radius: float,
+        obj_z_height: float = 0.6,
+    ) -> bool:
         obj_type = np.random.choice(["box", "circle"])
 
         if obj_type == "box":
@@ -120,7 +128,7 @@ class HeightMapSceneGenerator:
 
         return success
 
-    def add_obj_to_manager(self, obj, type):
+    def add_obj_to_manager(self, obj: hppfcl.CollisionObject, type: str) -> bool:
         self.callback.data.result.clear()
         self.callback.data.done = False
         self.collision_manager.distance(obj, self.callback)
@@ -150,7 +158,9 @@ class HeightMapSceneGenerator:
 
         return success
 
-    def add_plt_box(self, x, y, width=0.1, height=0.1):
+    def add_plt_box(
+        self, x: float, y: float, width: float = 0.1, height: float = 0.1
+    ) -> None:
         lower_left_corner_x = x - width / 2
         lower_left_corner_y = y - height / 2
 
@@ -164,5 +174,5 @@ class HeightMapSceneGenerator:
             )
         )
 
-    def add_plt_circle(self, x, y, radius=0.1):
+    def add_plt_circle(self, x: float, y: float, radius: float = 0.1) -> None:
         self.ax.add_patch(Circle((x, y), radius, edgecolor="white", facecolor="white"))

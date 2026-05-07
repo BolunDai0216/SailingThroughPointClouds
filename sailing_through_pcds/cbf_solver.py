@@ -1,8 +1,11 @@
+from typing import Union
+
+import numpy as np
 import proxsuite
 
 
 class CBFQPSolver:
-    def __init__(self, n_var, n_ieq=1, warm_start=False):
+    def __init__(self, n_var: int, n_ieq: int = 1, warm_start: bool = False) -> None:
         self.n = n_var  # number of decision variables
         self.n_eq = 0  # number of equality constraints
         self.n_ieq = n_ieq  # number of inequality constraints
@@ -10,7 +13,7 @@ class CBFQPSolver:
         self.initialized = False
         self.warm_start = warm_start
 
-    def solve(self, params):
+    def solve(self, params: dict) -> None:
         self.H, self.g, self.C, self.lb = self.compute_params(params)
 
         if not self.initialized:
@@ -28,7 +31,9 @@ class CBFQPSolver:
 
         self.qp.solve()
 
-    def compute_params(self, params):
+    def compute_params(
+        self, params: dict
+    ) -> Union[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         H = params["H"]
         g = params["g"]
         C = params["C"]
